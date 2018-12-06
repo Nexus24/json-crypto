@@ -15,7 +15,7 @@
                     Test
                     <div class="traffic-lights">
                         <button onclick="remote.getCurrentWindow().minimize()" class="traffic-light traffic-light-minimize" id="minimize"></button>
-                        <button onclick="remote.getCurrentWindow().isMaximized()==true ?remote.getCurrentWindow().unmaximize() : remote.getCurrentWindow().maximize()" class="traffic-light traffic-light-maximize" id="maximize"></button>
+                        <button onclick="(remote.getCurrentWindow().isMaximized()==true) ? (remote.getCurrentWindow().unmaximize()) : (remote.getCurrentWindow().maximize())" class="traffic-light traffic-light-maximize" id="maximize"></button>
                         <button onclick="remote.getCurrentWindow().close()" class="traffic-light traffic-light-close" id="close"></button>
                     </div>
                 </div>

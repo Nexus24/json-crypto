@@ -30,7 +30,7 @@ body {
     padding:5px;
     width:100%;
     border: 1px solid rgba(0, 0, 0, 0.06);
-    border-radius: 3px;
+    border-radius: 0px;
     background:#b1aeb1;
     overflow:scroll;
 }
