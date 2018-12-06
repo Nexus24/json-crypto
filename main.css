@@ -1,3 +1,6 @@
+* {
+    font-family: HelveticaNeue, 'Helvetica Neue', 'Lucida Grande', Arial, sans-serif;
+}
 html,
 body {
   height: 100%;
@@ -14,6 +17,7 @@ body {
 
 .box .row.header {
   flex: 0 1 auto;
+  position:fixed;
   /* The above is shorthand for:
   flex-grow: 0,
   flex-shrink: 1,
@@ -22,14 +26,30 @@ body {
   overflow:hidden;
   -webkit-app-region:drag;
 }
-
-.box .row.content {
-  flex: 1 1 auto;
-  margin-top:-2px;
-  background:gray;
+.code-view {
+    padding:5px;
+    width:100%;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    border-radius: 3px;
+    background:#b1aeb1;
+    overflow:scroll;
 }
-.box .row.content:last-child {
-}
-.box .row.content::-webkit-scrollbar{
+.code-view::-webkit-scrollbar{
     display:initial;
+}
+.box .row.content {
+  display:flex;
+  padding:5px;
+  flex: 1 1 0;
+  background:#d5d5d5;
+  overflow:hidden;
+}
+.box .row.content:first-child {
+    margin-top:5px;
+}
+::-webkit-scrollbar{
+    display:none;
+}
+.drag-drop {
+    white-space: pre;
 }

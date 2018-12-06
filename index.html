@@ -20,8 +20,9 @@
                     </div>
                 </div>
             </div>
-            <div class="row content" id="window-1"></div>
-            <div class="row content" id="window-2"></div>
+            <br>
+            <div class="row content" id="window-1"><div class="drag-drop code-view"></div></div>
+            <div class="row content" id="window-2"><div class="drag-drop code-view"></div></div>
         </div>
     </body>
 </html>
@@ -48,7 +49,9 @@
             for (let f of e.dataTransfer.files) {
                 fs.readFile(f.path,(err,data)=>{
                     console.log('File(s) you dragged here: ', data.toString("utf-8"))
-                    document.getElementById(e.target.id).innerHTML = data.toString('utf-8')
+                    if(e.target.classList.contains("drag-drop")==true){
+                        e.target.innerHTML = data.toString('utf-8')
+                    }
                 })
             }
             
