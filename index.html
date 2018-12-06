@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="frame.css">
+    <title>Document</title>
+</head>
+    <body>
+        <div class="box">
+            <div class="row header">
+                <div id="window-frame">
+                    <div class="titlebar">
+                        Test
+                        <div class="traffic-lights">
+                            <button onclick="minimize()" class="traffic-light traffic-light-minimize" id="minimize"></button>
+                            <button onclick="maximize()" class="traffic-light traffic-light-maximize" id="maximize"></button>
+                            <button onclick="close()" class="traffic-light traffic-light-close" id="close"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row content">
+                <p>
+                    <b>content</b>
+                    (fills remaining space)
+                </p>
+            </div>
+        </div>
+    </body>
+</html>
+<script>
+        const {remote} = require('electron')
+        const {app,BrowserWindow} = remote.require('electron')
+        let minimize = () => {
+            remote.BrowserWindow.getFocusedWindow().minimize()
+        }
+        var holder = document.getElementById('window-body');
+
+        holder.ondragover = () => {
+            return false;
+        };
+
+        holder.ondragleave = () => {
+            return false;
+        };
+
+        holder.ondragend = () => {
+            return false;
+        };
+
+        holder.ondrop = (e) => {
+            e.preventDefault();
+
+            for (let f of e.dataTransfer.files) {
+                console.log('File(s) you dragged here: ', f.path)
+            }
+            
+            return false;
+        };
+</script>

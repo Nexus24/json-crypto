@@ -1,0 +1,36 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  background:transparent;
+  overflow:hidden;
+}
+
+.box {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+}
+
+.box .row.header {
+  flex: 0 1 auto;
+  background:transparent;
+  /* The above is shorthand for:
+  flex-grow: 0,
+  flex-shrink: 1,
+  flex-basis: auto
+  */
+  overflow:hidden;
+  -webkit-app-region:drag;
+}
+
+.box .row.content {
+  flex: 1 1 auto;
+  margin-top:-2px;
+  background:gray;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+.box .row.content::-webkit-scrollbar{
+    display:initial;
+}
