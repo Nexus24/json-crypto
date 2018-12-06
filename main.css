@@ -47,9 +47,6 @@ body {
 .box .row.content:first-child {
     margin-top:5px;
 }
-::-webkit-scrollbar{
-    display:none;
-}
 .drag-drop {
     white-space: pre;
 }

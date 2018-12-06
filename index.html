@@ -50,7 +50,8 @@
                 fs.readFile(f.path,(err,data)=>{
                     console.log('File(s) you dragged here: ', data.toString("utf-8"))
                     if(e.target.classList.contains("drag-drop")==true){
-                        e.target.innerHTML = data.toString('utf-8')
+                        e.target.innerHTML = ""
+                        e.target.appendChild(document.createTextNode(data.toString('utf-8')))
                     }
                 })
             }
