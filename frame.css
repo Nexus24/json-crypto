@@ -3,7 +3,7 @@
     left: 8px;
     float:right;
     margin-right:8px;
-    margin-top: 2px;
+    margin-top: 0px;
     -webkit-app-region:no-drag;
   }
   .focus .traffic-lights > .traffic-light-close, .traffic-lights:hover > .traffic-light-close, .traffic-lights:active > .traffic-light-close {
@@ -32,9 +32,9 @@
   }
   
   .traffic-light {
-    border-radius: 30%;
+    border-radius: 0%;
     padding: 0;
-    height: 16px;
+    height: 13px;
     width: 16px;
     border: 1px solid rgba(0, 0, 0, 0.06);
     box-sizing: border-box;
@@ -121,6 +121,7 @@
   -ms-user-select: none;
   -o-user-select: none;
   cursor: default;
+  margin:0px;
 }
 
 

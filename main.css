@@ -14,7 +14,6 @@ body {
 
 .box .row.header {
   flex: 0 1 auto;
-  background:transparent;
   /* The above is shorthand for:
   flex-grow: 0,
   flex-shrink: 1,
@@ -28,8 +27,8 @@ body {
   flex: 1 1 auto;
   margin-top:-2px;
   background:gray;
-  border-bottom-left-radius: 6px;
-  border-bottom-right-radius: 6px;
+}
+.box .row.content:last-child {
 }
 .box .row.content::-webkit-scrollbar{
     display:initial;
