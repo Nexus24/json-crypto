@@ -6,6 +6,9 @@
   margin-top: 0px;
   -webkit-app-region:no-drag;
 }
+#header-toolbar {
+  margin-top:10px;
+}
 .focus .traffic-lights > .traffic-light-close, .traffic-lights:hover > .traffic-light-close, .traffic-lights:active > .traffic-light-close {
   background-color: #b6b6b6;
 }
@@ -122,7 +125,26 @@ cursor: default;
 margin:0px;
 }
 
+#frame-sub {
+  margin-top: 10px;
+  display: flex;
+  flex-flow: row;
+  height:18px;
+  flex: 0 1 auto;
+  overflow: hidden;
+  border-bottom: 1px solid #b1aeb1;
+  width:100%;
+  text-align: center;
+}
+.frame-sub-option {
+  height:18px;
+  margin-right:8px;
+}
 
+#save-button {
+  color:gray;
+  cursor: default;
+}
 
 /* window END */
 /* content BEGIN */

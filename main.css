@@ -38,16 +38,20 @@ body {
 .code-view::-webkit-scrollbar{
     display:initial;
 }
-.box .row.content {
-  display:flex;
-  padding:5px;
-  flex: 1 1 0;
-  background:#d5d5d5;
-  overflow:hidden;
-}
 .box .row.content:first-child {
-    margin-top:5px;
 }
 .drag-drop {
     white-space: pre;
+}
+.nowrap {
+    word-break: none;
+    overflow-wrap: normal;
+    overflow: hidden;
+}
+.box .row.content {
+    display:flex;
+    padding:5px;
+    flex: 1 1 0;
+    background:#d5d5d5;
+    overflow:hidden;
 }
