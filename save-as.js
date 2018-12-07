@@ -11,6 +11,8 @@ function saveAs(encryption=false){
         }else{
             saveContent(encryption,userChosenPath)
         }
+        document.getElementById('title').textContent = userChosenPath
+        saveData = userChosenPath
     }
 
 

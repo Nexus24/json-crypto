@@ -139,18 +139,13 @@ margin:0px;
 .frame-sub-option {
   height:18px;
   margin-right:8px;
-}
-
-#save-button {
-  color:gray;
-  cursor: default;
-}
-#save-button-2 {
-  color:gray;
-  cursor: default;
+  cursor:pointer
 }
 #option-encryption {
-  border: 1px black solid;
+  border: 0.5px black solid;
+  height:12px;
+  resize: none;
+  overflow: hidden;
 }
 /* window END */
 /* content BEGIN */

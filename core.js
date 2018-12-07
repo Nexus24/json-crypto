@@ -8,6 +8,9 @@ var saveData
 var decryptContent = () => {
     document.getElementById('window-1').firstChild.textContent = decrypt(document.getElementById('window-1').firstChild.textContent)
 }
+var encryptContent = () => {
+    document.getElementById('window-1').firstChild.textContent = encrypt(document.getElementById('window-1').firstChild.textContent)
+}
 
 document.ondragover = () => {
     return false
@@ -19,7 +22,6 @@ document.ondragleave = () => {
 document.ondragend = () => {
     return false
 }
-
 document.ondrop = (e) => {
     e.preventDefault();
 
@@ -29,7 +31,6 @@ document.ondrop = (e) => {
                 e.target.textContent = ""
                 e.target.appendChild(document.createTextNode(data.toString('utf-8')))
                 saveData = f.path
-                document.getElementById('title').textContent = f.path
             }
         })
     }
