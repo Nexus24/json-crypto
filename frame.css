@@ -145,7 +145,13 @@ margin:0px;
   color:gray;
   cursor: default;
 }
-
+#save-button-2 {
+  color:gray;
+  cursor: default;
+}
+#option-encryption {
+  border: 1px black solid;
+}
 /* window END */
 /* content BEGIN */
 

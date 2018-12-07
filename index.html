@@ -23,10 +23,14 @@
             <br>
             <div class="row content" id="frame-sub">
                 <span onclick="ipcRenderer.send('new-window')" style="cursor: pointer;" class="frame-sub-option">New</span>
-                <span class="frame-sub-option" id="save-button">Save</span>
-                <span onclick="saveAs()" style="cursor: pointer;" class="frame-sub-option">Save-as</span>
+                <span class="frame-sub-option" onclick="saveContent(false)" id="save-button">Save</span>
+                <span class="frame-sub-option" onclick="saveContentEncrypted(true)" id="save-button-2">Save-aes256</span>
+                <span onclick="saveAs(false)" style="cursor: pointer;" class="frame-sub-option">Save-as</span>
+                <span onclick="saveAs(true)" style="cursor: pointer;" class="frame-sub-option">Save-as-aes256</span>
+                <span class="frame-sub-option" id="decrypt-button" onclick="decryptContent()">Decrypt</span>
+                <span class="frame-sub-option"><textarea id="option-encryption">qF8JmnL</textarea></span>
             </div>
-            <div class="row content" contenteditable="true" id="window-1"><div class="drag-drop code-view"></div></div>
+            <div class="row content" id="window-1"><div class="drag-drop code-view" contenteditable="true"></div></div>
         </div>
     </body>
 </html>
@@ -34,6 +38,25 @@
         const fs = require('fs')
         const {remote,ipcRenderer} = require('electron')
         const {app,BrowserWindow,dialog} = remote.require('electron')
+</script>
+<script>
+    var cryptoLib = require('crypto'),
+    algorithm = 'aes-256-ctr',
+    password = document.getElementById("option-encryption").textContent;
+
+    var encrypt = (text) => {
+        var cipher = cryptoLib.createCipher(algorithm,document.getElementById("option-encryption").value)
+        var crypted = cipher.update(text,'utf8','hex')
+        crypted += cipher.final('hex');
+        return crypted;
+    }
+    
+    var decrypt = (text) => {
+        var decipher = cryptoLib.createDecipher(algorithm,document.getElementById("option-encryption").value)
+        var dec = decipher.update(text,'hex','utf8')
+        dec += decipher.final('utf8');
+        return dec;
+    }
 </script>
 <script src="core.js"></script>
 <script src="save.js"></script>

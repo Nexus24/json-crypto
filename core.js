@@ -1,4 +1,13 @@
+
+
+
+
+
 var saveData
+
+var decryptContent = () => {
+    document.getElementById('window-1').firstChild.textContent = decrypt(document.getElementById('window-1').firstChild.textContent)
+}
 
 document.ondragover = () => {
     return false
@@ -21,9 +30,6 @@ document.ondrop = (e) => {
                 e.target.appendChild(document.createTextNode(data.toString('utf-8')))
                 saveData = f.path
                 document.getElementById('title').textContent = f.path
-                document.getElementById('save-button').style.color = "black"
-                document.getElementById('save-button').style.cursor = "pointer"
-                document.getElementById('save-button').addEventListener("click",saveContent())
             }
         })
     }
