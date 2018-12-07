@@ -7,22 +7,22 @@
     -webkit-app-region:no-drag;
   }
   .focus .traffic-lights > .traffic-light-close, .traffic-lights:hover > .traffic-light-close, .traffic-lights:active > .traffic-light-close {
-    background-color: #ff6159;
+    background-color: #b6b6b6;
   }
   .focus .traffic-lights > .traffic-light-close:active:hover, .traffic-lights:hover > .traffic-light-close:active:hover, .traffic-lights:active > .traffic-light-close:active:hover {
-    background-color: #bf4942;
+    background-color: #b1b1b1;
   }
   .focus .traffic-lights > .traffic-light-minimize, .traffic-lights:hover > .traffic-light-minimize, .traffic-lights:active > .traffic-light-minimize {
-    background-color: #ffbd2e;
+    background-color: #b6b6b6;
   }
   .focus .traffic-lights > .traffic-light-minimize:active:hover, .traffic-lights:hover > .traffic-light-minimize:active:hover, .traffic-lights:active > .traffic-light-minimize:active:hover {
-    background-color: #bf8e22;
+    background-color: #b1b1b1;
   }
   .focus .traffic-lights > .traffic-light-maximize, .traffic-lights:hover > .traffic-light-maximize, .traffic-lights:active > .traffic-light-maximize {
-    background-color: #28c941;
+    background-color: #b6b6b6;
   }
   .focus .traffic-lights > .traffic-light-maximize:active:hover, .traffic-lights:hover > .traffic-light-maximize:active:hover, .traffic-lights:active > .traffic-light-maximize:active:hover {
-    background-color: #1d9730;
+    background-color: #b1b1b1;
   }
   .traffic-lights > .traffic-light:before, .traffic-lights > .traffic-light:after {
     visibility: hidden;
@@ -54,7 +54,7 @@
     margin: auto;
   }
   .traffic-light-close:before, .traffic-light-close:after {
-    background-color: #4d0000;
+    background-color: #4d4d4d;
     width: 12px;
     height: 1px;
   }
@@ -65,32 +65,32 @@
     transform: rotate(-45deg);
   }
   .traffic-light-close:active:hover:before, .traffic-light-close:active:hover:after {
-    background-color: #190000;
+    background-color: #1b1b1b;
   }
   .traffic-light-minimize:before {
-    background-color: #995700;
+    background-color: #999999;
     width: 12px;
     height: 1px;
   }
   .traffic-light-minimize:active:hover:before {
-    background-color: #592800;
+    background-color: #595959;
   }
   .traffic-light-maximize:before {
-    background-color: #006500;
+    background-color: #656565;
     width: 8px;
     height: 8px;
   }
   .traffic-light-maximize:after {
-    background-color: #28c941;
+    background-color: #b8b8b8;
     width: 11px;
     height: 3px;
     transform: rotate(45deg);
   }
   .traffic-light-maximize:active:hover:before {
-    background-color: #003200;
+    background-color: #2e2e2e;
   }
   .traffic-light-maximize:active:hover:after {
-    background-color: #1d9730;
+    background-color: #b1b1b1;
   }
 /* ©2015 Johannes Jakob
    Made with <3 in Germany */
