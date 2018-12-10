@@ -13,3 +13,6 @@ $ cd path/to/app
 $ electron-packager . json-crypto --platform=win-32 --arch=x64
 
 This is an FBLA project, by the way.
+
+build command:  [ electron-packager . json-crypto --overwrite --asar=true --platform=win32 --arch=x64 --prune=true --out=re
+lease-builds ]

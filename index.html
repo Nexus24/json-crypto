@@ -47,14 +47,14 @@
 
     var encrypt = (text) => {
         var cipher = cryptoLib.createCipher(algorithm,document.getElementById("option-encryption").value)
-        var crypted = cipher.update(text,'utf8','hex')
-        crypted += cipher.final('hex');
+        var crypted = cipher.update(text,'utf8','latin1')
+        crypted += cipher.final('latin1');
         return crypted;
     }
     
     var decrypt = (text) => {
         var decipher = cryptoLib.createDecipher(algorithm,document.getElementById("option-encryption").value)
-        var dec = decipher.update(text,'hex','utf8')
+        var dec = decipher.update(text,'latin1','utf8')
         dec += decipher.final('utf8');
         return dec;
     }

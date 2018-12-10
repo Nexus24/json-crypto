@@ -13,7 +13,6 @@ function createWindow () {
   win[i].setResizable(true);
 
   // Open the DevTools.
-  win[i].webContents.openDevTools()
 
   // Emitted when the window is closed.
   win[i].on('closed', () => {
