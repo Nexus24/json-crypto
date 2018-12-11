@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="frame.css">
+    <link rel="stylesheet" href="node_modules/native-toast/dist/native-toast.css">
+    <title>crypto-box</title>
+</head>
+    <body>
+        <div class="box">
+            <div class="row header titlebar" style="-webkit-app-region: no-drag;padding:5px">
+                <div class="" style="-webkit-app-region: drag;margin:0px;margin-top:0px">
+                    <span id="title">crypto-box</span>
+                    <div class="traffic-lights">
+                        <button onclick="remote.getCurrentWindow().minimize()" class="traffic-light traffic-light-minimize" id="minimize"></button>
+                        <button onclick="(remote.getCurrentWindow().isMaximized()==true) ? (remote.getCurrentWindow().unmaximize()) : (remote.getCurrentWindow().maximize())" class="traffic-light traffic-light-maximize" id="maximize"></button>
+                        <button onclick="remote.getCurrentWindow().close()" class="traffic-light traffic-light-close" id="close"></button>
+                    </div>
+                </div>
+            </div>
+            <div class="row content" id="frame-sub">
+                <span onclick="ipcRenderer.send('new-window')" style="cursor: pointer;" class="frame-sub-option">New</span>
+                <span class="frame-sub-option" onclick="saveContent(false)" id="save-button">Save</span>
+                <span onclick="saveAs(false)" style="cursor: pointer;" class="frame-sub-option">Save-as</span>
+                <span class="frame-sub-option" id="decrypt-button" onclick="decryptContent()">Decrypt</span>
+                <span class="frame-sub-option" id="encrypt-button" onclick="encryptContent()">Encrypt</span>
+            </div>
+            <div class="row content" id="frame-sub-2">
+                <span class="frame-sub-option-2">Algorithm:</span>
+                <span class="frame-sub-option-2"><textarea id="option-encryption-algorithm">aes-256-ecb</textarea></span>
+                <span class="frame-sub-option-2">Key:</span>
+                <span class="frame-sub-option-2"><textarea id="option-encryption"></textarea></span>
+                <span class="frame-sub-option-2" id="randomizer-button" onclick="keyGen()">Rand-key</span>
+            </div>
+            <div class="row content" id="window-1"><div class="drag-drop code-view" contenteditable="true"></div></div>
+        </div>
+    </body>
+</html>
+<script>
+        const fs = require('fs')
+        const {remote,ipcRenderer} = require('electron')
+        const {app,BrowserWindow,dialog} = remote.require('electron')
+</script>
+<script>
+    const nativeToast = require('native-toast')
+    console.error = function(err){
+        nativeToast({
+            message: err.name,
+            position: 'south-east',
+            // Self destroy in 5 seconds
+            timeout: 5000,
+            type: 'error'
+        })
+    }
+    var cryptoLib = require('crypto'),
+    algorithm = 'aes-256-ecb';
+    var keyGen = () => {
+        document.getElementById('option-encryption').innerHTML = cryptoLib.randomBytes(10).toString('base64');
+    }
+    var encrypt = (text) => {
+        if(cryptoLib.getCiphers().indexOf(document.getElementById("option-encryption-algorithm").value)>-1){
+            var cipher = cryptoLib.createCipher(document.getElementById("option-encryption-algorithm").value,document.getElementById("option-encryption").value)
+            var crypted = cipher.update(text,'utf8','latin1')
+            crypted += cipher.final('latin1');
+            return crypted;
+        }else{
+            nativeToast({
+                message: "Invalid cipher",
+                position: 'south-east',
+                // Self destroy in 5 seconds
+                timeout: 5000,
+                type: 'error'
+            })
+            return text
+        }
+    }
+    
+    var decrypt = (text) => {
+        if(cryptoLib.getCiphers().indexOf(document.getElementById("option-encryption-algorithm").value)>-1){
+            var decipher = cryptoLib.createDecipher(document.getElementById("option-encryption-algorithm").value,document.getElementById("option-encryption").value)
+            var dec = decipher.update(text,'latin1','utf8')
+            dec += decipher.final('utf8');
+            return dec;
+        }else{
+            nativeToast({
+                message: "Invalid cipher",
+                position: 'south-east',
+                // Self destroy in 5 seconds
+                timeout: 5000,
+                type: 'error'
+            })
+            return text;
+        }
+    }
+</script>
+<script src="core.js"></script>
+<script src="save.js"></script>
+<script src="save-as.js"></script>
