@@ -6,10 +6,13 @@
 var saveData
 
 var decryptContent = () => {
-    document.getElementById('window-1').firstChild.textContent = decrypt(document.getElementById('window-1').firstChild.textContent)
+    document.getElementById('window-1-view').textContent = decrypt(document.getElementById('window-1-view').textContent)
 }
 var encryptContent = () => {
-    document.getElementById('window-1').firstChild.textContent = encrypt(document.getElementById('window-1').firstChild.textContent)
+    document.getElementById('window-1-view').textContent = encrypt(document.getElementById('window-1-view').textContent)
+}
+var hashContent = () => {
+    document.getElementById('window-1-view').textContent = hash(document.getElementById('window-1-view').textContent+document.getElementById("option-hash").value)
 }
 
 document.ondragover = () => {

@@ -27,16 +27,28 @@
                 <span onclick="saveAs(false)" style="cursor: pointer;" class="frame-sub-option">Save-as</span>
                 <span class="frame-sub-option" id="decrypt-button" onclick="decryptContent()">Decrypt</span>
                 <span class="frame-sub-option" id="encrypt-button" onclick="encryptContent()">Encrypt</span>
+                <span class="frame-sub-option" onclick="hashContent()">Hash</span>
             </div>
             <div class="row content" id="frame-sub-2">
+                <span style="font-size: 9px; border-right: 1px gray solid;padding-right:4px;" class="frame-sub-option-2">Encryption<br>Settings</span>
                 <span class="frame-sub-option-2">Algorithm:</span>
-                <span class="frame-sub-option-2"><textarea id="option-encryption-algorithm">aes-256-ecb</textarea></span>
+                <span class="frame-sub-option-2"><form onsubmit="event.preventDefault();return algorithmGen()"><input type="text" id="option-encryption-algorithm" value="aes-256-ecb"></form></span>
                 <span class="frame-sub-option-2">Key:</span>
-                <span class="frame-sub-option-2"><textarea id="option-encryption"></textarea></span>
+                <span class="frame-sub-option-2"><form onsubmit="event.preventDefault();return keyGen()"><input type="text" id="option-encryption" value="key"></form></span>
                 <span class="frame-sub-option-2" id="randomizer-button" onclick="keyGen()">Rand-key</span>
                 <span class="frame-sub-option-2" id="randomizer-button" onclick="algorithmGen()">Rand-algorithm</span>
+                
             </div>
-            <div class="row content" id="window-1"><div class="drag-drop code-view" contenteditable="true"></div></div>
+            <div class="row content" id="frame-sub-3">
+                    <span style="font-size: 9px; border-right: 1px gray solid;padding-right:13.5px;" class="frame-sub-option-2">Hashing<br>Settings</span>
+                <span class="frame-sub-option-2">Algorithm:</span>
+                <span class="frame-sub-option-2"><form onsubmit="event.preventDefault();return hashGen()"><input type="text" id="option-hash-algorithm" value="sha256"></form></span>
+                <span class="frame-sub-option-2">Salt:</span>
+                <span class="frame-sub-option-2"><form onsubmit="event.preventDefault();return saltGen()"><input type="text" id="option-hash" value=""></form></span>
+                <span class="frame-sub-option-2" id="randomizer-button" onclick="saltGen()">Rand-salt</span>
+                <span class="frame-sub-option-2" id="randomizer-button" onclick="hashGen()">Rand-algorithm</span>
+            </div>
+            <div class="row content" id="window-1"><div id="window-1-view" class="drag-drop code-view" contenteditable="true"></div></div>
             <div class="row content" id="window-2"></div>
         </div>
     </body>
@@ -50,12 +62,12 @@
     const nativeToast = require('native-toast')
     var cryptoLib = require('crypto'),
     algorithm = 'aes-256-ecb';
-    var list = document.createElement("ul");
-        for (var i in cryptoLib.getCiphers()) {
+    var list = document.createElement("table");
+        for (var i = 1; i<cryptoLib.getCiphers().length;i++) {
             var anchor = document.createElement("a");
             anchor.innerText = `${i}. "${cryptoLib.getCiphers()[i]}"`;
 
-            var elem = document.createElement("li");
+            var elem = document.createElement("tr");
             elem.appendChild(anchor);
             list.appendChild(elem);
         }
@@ -63,9 +75,19 @@
     var keyGen = () => {
         document.getElementById('option-encryption').value = cryptoLib.randomBytes(10).toString('base64')
     }
+    var saltGen = () => {
+        document.getElementById('option-hash').value = cryptoLib.randomBytes(10).toString('base64')
+    }
+    var hashGen = () => {
+        if(parseInt(document.getElementById('option-hash-algorithm').value)-1>0&&parseInt(document.getElementById('option-hash-algorithm').value)-1<135){
+            document.getElementById('option-hash-algorithm').value = cryptoLib.getHashes()[parseInt(document.getElementById('option-hash-algorithm').value)]
+        }else{
+            document.getElementById('option-hash-algorithm').value = cryptoLib.getHashes()[Math.floor(Math.random()*cryptoLib.getHashes().length)]
+        }
+    }
     var algorithmGen = () => {
         if(parseInt(document.getElementById('option-encryption-algorithm').value)-1>0&&parseInt(document.getElementById('option-encryption-algorithm').value)-1<135){
-            document.getElementById('option-encryption-algorithm').value = cryptoLib.getCiphers()[parseInt(document.getElementById('option-encryption-algorithm').value)-1]
+            document.getElementById('option-encryption-algorithm').value = cryptoLib.getCiphers()[parseInt(document.getElementById('option-encryption-algorithm').value)]
         }else{
             document.getElementById('option-encryption-algorithm').value = cryptoLib.getCiphers()[Math.floor(Math.random()*cryptoLib.getCiphers().length)]
         }
@@ -86,6 +108,11 @@
             })
             return text
         }
+    }
+    var hash = (text) => {
+        return cryptoLib.createHash(document.getElementById('option-hash-algorithm').value)
+            .update(text,"utf-8")
+            .digest('latin1');
     }
     
     var decrypt = (text) => {

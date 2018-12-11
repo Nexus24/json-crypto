@@ -136,7 +136,7 @@ margin:0px;
   width:100%;
   text-align: center;
 }
-#frame-sub-2 {
+#frame-sub-2, #frame-sub-3 {
   margin-top: 0px;
   display: flex;
   flex-flow: row;
@@ -149,18 +149,15 @@ margin:0px;
 .frame-sub-option-2 {
   margin-right:8px;
   cursor:pointer;
+  user-select: none;
 }
 .frame-sub-option {
   height:18px;
   margin-right:8px;
-  cursor:pointer
+  cursor:pointer;
+  user-select: none;
 }
-#option-encryption, #option-encryption-algorithm {
-  border: 0.5px black solid;
-  height:12px;
-  resize: none;
-  overflow: hidden;
-}
+
 /* window END */
 /* content BEGIN */
 
